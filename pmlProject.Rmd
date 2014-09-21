@@ -22,9 +22,9 @@ In the following, we will be creating a predictive model of the [Weight Lifting 
 
 ##### Downloading and Slicing the data
 
-```{r getting data, cache=TRUE}
+```{r getting data}
 set.seed(47)  ## Seed selection for reproducibility
-require(caret)
+library(caret)
 
 dataTrain <- read.csv('http://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv')  ## Training dataset
 dataTest <- read.csv('http://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv')  ## Testing dataset
@@ -99,7 +99,7 @@ Two Hypothesis
  1. Lowering the size of K will increase the accuracy of the model
  2. A model created from a larger dataset, when predicting a smaller dataset, will be more accurate
 
-```{r k10, cache=TRUE}
+```{r k10}
 fold10 <- createFolds(y = training$classe, k = 10)
 fit1 <- train(classe~., method = 'rf', data = training[fold10[[1]],])
 results <- data.frame(t(sapply(2:10, function(x){
@@ -111,7 +111,7 @@ mean(results) ## Average of the accuracy predicitons not including the fold the 
 
  - We are achieving a ~94% accuracy across the remaining 9 folds.  Now let's try creating a model from a larger dataset with 5 fold breaks.
 
-```{r k5, cache=TRUE}
+```{r k5}
 fold5 <- createFolds(y = training$classe, k = 5)
 fit2 <- train(classe~., method = 'rf', data = training[fold5[[1]],])
 results <- data.frame(t(sapply(2:5, function(x){
@@ -136,7 +136,7 @@ mean(results)
 
  - Note that the **testing** set came from the original **training** data and has not been altered in any way.
 
-```{r finalmodel, cache=TRUE}
+```{r finalmodel}
 fit3 <- train(classe~., method = 'rf', data = training)
 confusionMatrix(testing$classe, predict(fit3, testing))
 ```

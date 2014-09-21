@@ -6,7 +6,6 @@
 
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="Content-Style-Type" content="text/css" />
 <meta name="generator" content="pandoc" />
 
 <meta name="author" content="Miadad Rashid" />
@@ -77,9 +76,10 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <div id="downloading-and-slicing-the-data" class="section level5">
 <h5>Downloading and Slicing the data</h5>
 <pre class="r"><code>set.seed(47)  ## Seed selection for reproducibility
-require(caret)
-
-dataTrain &lt;- read.csv('http://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv')  ## Training dataset
+library(caret)</code></pre>
+<pre><code>## Loading required package: lattice
+## Loading required package: ggplot2</code></pre>
+<pre class="r"><code>dataTrain &lt;- read.csv('http://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv')  ## Training dataset
 dataTest &lt;- read.csv('http://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv')  ## Testing dataset</code></pre>
 </div>
 <div id="partitioning-the-datatrain-into-the-training-and-testing-datasets" class="section level5">
@@ -292,12 +292,12 @@ $(document).ready(function () {
 
 </script>
 
-<!-- dynamically load mathjax for compatibility with --self-contained -->
+<!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>
