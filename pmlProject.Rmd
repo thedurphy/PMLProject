@@ -25,7 +25,6 @@ In the following, we will be creating a predictive model of the [Weight Lifting 
 ```{r getting data, cache=TRUE}
 set.seed(47)  ## Seed selection for reproducibility
 require(caret)
-library(caret)
 
 dataTrain <- read.csv('http://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv')  ## Training dataset
 dataTest <- read.csv('http://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv')  ## Testing dataset
@@ -66,7 +65,7 @@ max(percentNa$Percent)
 training <- training[,complete.cases(t(training))] ## training will only include complete columns
 ```
 
-###### Now we will remove columns that have close to zero variance.  Columns that have close to no variance off no relevant information when creating a predicitive model since their data is close to constant and our outcome is not.
+###### Now we will remove columns that have close to zero variance.  Columns that have close to no variance offer no relevant information when creating a predicitive model since their data is close to constant and our outcome is not.
 ```{r remove zero variance}
 training <- training[,-nearZeroVar(training)]
 ```
@@ -131,18 +130,18 @@ mean(results)
  - As you can see lowering the K-folds and using a larger dataset to model from got us a ~96% accuracy.
  - Then applying that model to the smaller folds (k=10) we achieved a ~97% accuracy.
  
-#### Creating the final model and proving accuracy on the testing set.  Added Bonus: showing the model prediction on the dataTest set which does not have the outcomes and comparing it to the correct answers
+#### Creating the final model and proving accuracy on the testing set.  Added Bonus: showing the model prediction on the dataTest set which does not have the outcomes and comparing it to the correct answers.
 
 ##### Testing the final model on the testing set.
 
- - Note that the testing set came from the original training data and has not been altered in any way.
+ - Note that the **testing** set came from the original **training** data and has not been altered in any way.
 
-```{r finalmodel}
+```{r finalmodel, cache=TRUE}
 fit3 <- train(classe~., method = 'rf', data = training)
 confusionMatrix(testing$classe, predict(fit3, testing))
 ```
 
-After achieving an accuracy of ~99%, we are ready to apply it to the final **dataTest**.  The **dataTest** set was not used in anyway and the actual answers was achieved from the submission portion of the project
+After achieving an accuracy of ~99%, we are ready to apply it to the final **dataTest**.  The **dataTest** set was not used in anyway to creat the predictive model and the actual answers were acquired after the final submission and correction. 
 
 ```{r theTest}
 correctAnswers <- c("B","A", "B", "A", "A", "E", "D", "B", "A", "A", "B", "C", "B", "A", "E", "E", "A", "B", "B", "B")  ## Achieved from correct submissions
@@ -151,4 +150,6 @@ confusionMatrix(correctAnswers, predict(fit3, dataTest))
 
 ```
 
-Success!  The prediciton was 100% accurate on the final Data set.
+# Success!  
+
+### The prediction was 100% accurate on the final Data set.

@@ -78,7 +78,6 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <h5>Downloading and Slicing the data</h5>
 <pre class="r"><code>set.seed(47)  ## Seed selection for reproducibility
 require(caret)
-library(caret)
 
 dataTrain &lt;- read.csv('http://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv')  ## Training dataset
 dataTest &lt;- read.csv('http://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv')  ## Testing dataset</code></pre>
@@ -110,8 +109,8 @@ q + theme(axis.text.x = element_blank()) + ylab('Percent NA of Variables')</code
 </ul>
 <pre class="r"><code>training &lt;- training[,complete.cases(t(training))] ## training will only include complete columns</code></pre>
 </div>
-<div id="now-we-will-remove-columns-that-have-close-to-zero-variance.-columns-that-have-close-to-no-variance-off-no-relevant-information-when-creating-a-predicitive-model-since-their-data-is-close-to-constant-and-our-outcome-is-not." class="section level6">
-<h6>Now we will remove columns that have close to zero variance. Columns that have close to no variance off no relevant information when creating a predicitive model since their data is close to constant and our outcome is not.</h6>
+<div id="now-we-will-remove-columns-that-have-close-to-zero-variance.-columns-that-have-close-to-no-variance-offer-no-relevant-information-when-creating-a-predicitive-model-since-their-data-is-close-to-constant-and-our-outcome-is-not." class="section level6">
+<h6>Now we will remove columns that have close to zero variance. Columns that have close to no variance offer no relevant information when creating a predicitive model since their data is close to constant and our outcome is not.</h6>
 <pre class="r"><code>training &lt;- training[,-nearZeroVar(training)]</code></pre>
 </div>
 <div id="visual-examination-of-the-columns" class="section level6">
@@ -197,12 +196,12 @@ mean(results)</code></pre>
 </div>
 </div>
 </div>
-<div id="creating-the-final-model-and-proving-accuracy-on-the-testing-set.-added-bonus-showing-the-model-prediction-on-the-datatest-set-which-does-not-have-the-outcomes-and-comparing-it-to-the-correct-answers" class="section level4">
-<h4>Creating the final model and proving accuracy on the testing set. Added Bonus: showing the model prediction on the dataTest set which does not have the outcomes and comparing it to the correct answers</h4>
+<div id="creating-the-final-model-and-proving-accuracy-on-the-testing-set.-added-bonus-showing-the-model-prediction-on-the-datatest-set-which-does-not-have-the-outcomes-and-comparing-it-to-the-correct-answers." class="section level4">
+<h4>Creating the final model and proving accuracy on the testing set. Added Bonus: showing the model prediction on the dataTest set which does not have the outcomes and comparing it to the correct answers.</h4>
 <div id="testing-the-final-model-on-the-testing-set." class="section level5">
 <h5>Testing the final model on the testing set.</h5>
 <ul>
-<li>Note that the testing set came from the original training data and has not been altered in any way.</li>
+<li>Note that the <strong>testing</strong> set came from the original <strong>training</strong> data and has not been altered in any way.</li>
 </ul>
 <pre class="r"><code>fit3 &lt;- train(classe~., method = 'rf', data = training)
 confusionMatrix(testing$classe, predict(fit3, testing))</code></pre>
@@ -237,7 +236,7 @@ confusionMatrix(testing$classe, predict(fit3, testing))</code></pre>
 ## Detection Rate          0.284    0.191    0.172    0.160    0.183
 ## Detection Prevalence    0.284    0.194    0.174    0.164    0.184
 ## Balanced Accuracy       0.996    0.993    0.987    0.995    0.998</code></pre>
-<p>After achieving an accuracy of ~99%, we are ready to apply it to the final <strong>dataTest</strong>. The <strong>dataTest</strong> set was not used in anyway and the actual answers was achieved from the submission portion of the project</p>
+<p>After achieving an accuracy of ~99%, we are ready to apply it to the final <strong>dataTest</strong>. The <strong>dataTest</strong> set was not used in anyway to creat the predictive model and the actual answers were acquired after the final submission and correction.</p>
 <pre class="r"><code>correctAnswers &lt;- c(&quot;B&quot;,&quot;A&quot;, &quot;B&quot;, &quot;A&quot;, &quot;A&quot;, &quot;E&quot;, &quot;D&quot;, &quot;B&quot;, &quot;A&quot;, &quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;B&quot;, &quot;A&quot;, &quot;E&quot;, &quot;E&quot;, &quot;A&quot;, &quot;B&quot;, &quot;B&quot;, &quot;B&quot;)  ## Achieved from correct submissions
 
 confusionMatrix(correctAnswers, predict(fit3, dataTest))</code></pre>
@@ -272,7 +271,12 @@ confusionMatrix(correctAnswers, predict(fit3, dataTest))</code></pre>
 ## Detection Rate           0.35      0.4     0.05     0.05     0.15
 ## Detection Prevalence     0.35      0.4     0.05     0.05     0.15
 ## Balanced Accuracy        1.00      1.0     1.00     1.00     1.00</code></pre>
-<p>Success! The prediciton was 100% accurate on the final Data set.</p>
+</div>
+</div>
+<div id="success" class="section level1">
+<h1>Success!</h1>
+<div id="the-prediction-was-100-accurate-on-the-final-data-set." class="section level3">
+<h3>The prediction was 100% accurate on the final Data set.</h3>
 </div>
 </div>
 
