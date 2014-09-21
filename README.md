@@ -3,4 +3,4 @@ PMLProject
 Practical Machine Learning Project.
 Please go to
 [pmlProject](https://thedurphy.github.io/PMLProject/pmlProject)
-for the report.
+if you want to open the report in your browser.
